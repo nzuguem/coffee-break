@@ -1,0 +1,52 @@
+version: '3'
+
+tasks:
+  default:
+    desc: List Tasks.
+    cmd: task -l
+
+  run:coffee-break-simulator:
+    desc: Run Coffee Break Simulator.
+    dir: ./coffee-break-simulator
+    cmd: quarkus dev
+
+  run:native:coffee-break-simulator:
+    desc: Run Coffee Break Simulator.
+    dir: ./coffee-break-simulator
+    cmd: target/coffee-break-simulator-runner
+
+  build:native:coffee-break-simulator:
+    desc: Build native image for Coffee Break Simulator.
+    dir: ./coffee-break-simulator
+    cmd: quarkus build --native --no-tests
+
+  run:coffee-machine-service:
+    desc: Run Coffee Machine Service.
+    dir: ./coffee-machine-service
+    cmd: quarkus dev
+
+  run:native:coffee-machine-service:
+    desc: Run Coffee Machine Service.
+    dir: ./coffee-machine-service
+    cmd: target/coffee-machine-service-runner
+
+  build:native:coffee-machine-service:
+    desc: Build native image for Coffee Machine Service.
+    dir: ./coffee-machine-service
+    cmd: quarkus build --native --no-tests
+
+  run:gossip-service:
+    desc: Run Gossip Service.
+    dir: ./gossip-service
+    cmd: ./mvnw spring-boot:run
+
+  run:native:gossip-service:
+    desc: Run Gossip Service.
+    dir: ./gossip-service
+    cmd: target/gossip-service
+
+  build:native:gossip-service:
+    desc: Build native image for Gossip Service.
+    dir: ./gossip-service
+    cmd: ./mvnw -Pnative native:compile
+

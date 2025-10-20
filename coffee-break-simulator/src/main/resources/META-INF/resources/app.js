@@ -56,7 +56,7 @@ function createStreamCard(id) {
   card.id = `stream-${id}`;
   card.innerHTML = `
     <div class="stream-header">
-      <div class="stream-id">📋 ${escapeHtml(id)}</div>
+      <div class="stream-id">🧶 ${escapeHtml(id)}</div>
       <div class="stream-count" id="count-${id}">0</div>
     </div>
     <div class="stream-content" id="content-${id}"></div>
