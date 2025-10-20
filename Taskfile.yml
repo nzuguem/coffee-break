@@ -30,10 +30,40 @@ tasks:
     dir: ./coffee-machine-service
     cmd: target/coffee-machine-service-runner
 
+  build:coffee-machine-service:
+    desc: Build Coffee Machine Service.
+    dir: ./coffee-machine-service
+    cmd: quarkus build
+
   build:native:coffee-machine-service:
     desc: Build native image for Coffee Machine Service.
     dir: ./coffee-machine-service
     cmd: quarkus build --native --no-tests
+
+  build:native:lambda:coffee-machine-service:
+    desc: Build native image for Coffee Machine Service - AWS Lambda.
+    dir: ./coffee-machine-service
+    cmds:
+      - ./mvnw clean
+      - quarkus build --native --no-tests -Dquarkus.native.container-build=true
+
+  deploy:native:lambda:coffee-machine-service:
+    desc: Deploy native image for Coffee Machine Service - AWS Lambda.
+    dir: ./coffee-machine-service
+    cmds:
+      - mkdir -p target/sam
+      - cp target/coffee-machine-service-runner target/sam
+      - cp bootstrap target/sam
+      - sam deploy -t sam.native.yaml --config-env native
+
+  deploy:lambda:coffee-machine-service:
+    desc: Deploy Coffee Machine Service - AWS Lambda.
+    dir: ./coffee-machine-service
+    cmds:
+      - mkdir -p target/sam
+      - cp -R target/quarkus-app/* target/sam
+      - cp run.sh target/sam
+      - sam deploy -t sam.jvm.yaml
 
   run:gossip-service:
     desc: Run Gossip Service.
@@ -48,5 +78,34 @@ tasks:
   build:native:gossip-service:
     desc: Build native image for Gossip Service.
     dir: ./gossip-service
-    cmd: ./mvnw -Pnative native:compile
+    cmd: ./mvnw clean -Pnative native:compile
 
+  build:gossip-service:
+    desc: Build Gossip Service.
+    dir: ./gossip-service
+    cmd: ./mvnw clean package
+
+  build:native:lambda:gossip-service:
+    desc: Build native image for Gossip Service.
+    dir: ./gossip-service
+    cmds:
+      - docker build -t al2023-graalvm21 -f Dockerfile.al2023-graalvm21 .
+      - docker run -it -v `pwd`:/project  -v ~/.m2:/root/.m2 al2023-graalvm21 ./mvnw clean -Pnative native:compile
+
+  deploy:native:lambda:gossip-service:
+    desc: Deploy native image for Gossip Service - AWS Lambda.
+    dir: ./gossip-service
+    cmds:
+      - mkdir -p target/sam
+      - cp target/gossip-service target/sam
+      - cp bootstrap target/sam
+      - sam deploy -t sam.native.yaml --config-env native
+
+  deploy:lambda:gossip-service:
+    desc: Deploy Gossip Service - AWS Lambda.
+    dir: ./gossip-service
+    cmds:
+      - mkdir -p target/sam
+      - cp target/gossip-service.jar target/sam/app.jar
+      - cp run.sh target/sam
+      - sam deploy -t sam.jvm.yaml

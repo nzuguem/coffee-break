@@ -1,0 +1,18 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "gossip-service-lwa"
+resolve_s3 = true
+s3_prefix = "gossip-service-lwa"
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
+
+[native.deploy.parameters]
+stack_name = "gossip-service-native-lwa"
+s3_prefix = "gossip-service-native-lwa"
+resolve_s3 = true
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
