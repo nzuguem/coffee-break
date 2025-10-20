@@ -1,0 +1,18 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "coffee-machine-service"
+resolve_s3 = true
+s3_prefix = "coffee-machine-service"
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
+
+[native.deploy.parameters]
+stack_name = "coffee-machine-service-native"
+s3_prefix = "coffee-machine-service-native"
+resolve_s3 = true
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
