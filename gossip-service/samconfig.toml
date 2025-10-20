@@ -7,7 +7,6 @@ region = "eu-west-1"
 capabilities = "CAPABILITY_IAM"
 disable_rollback = true
 image_repositories = []
-confirm_changeset = true
 
 [native.deploy.parameters]
 stack_name = "gossip-service-native"

@@ -11,15 +11,6 @@
             <directory>target/classes</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
-        <fileSet>
-            <directory>src/shell/java</directory>
-            <outputDirectory>/</outputDirectory>
-            <useDefaultExcludes>true</useDefaultExcludes>
-            <fileMode>0775</fileMode>
-            <includes>
-                <include>bootstrap</include>
-            </includes>
-        </fileSet>
     </fileSets>
     <dependencySets>
         <dependencySet>
