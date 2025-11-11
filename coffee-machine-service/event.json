@@ -1,0 +1,37 @@
+{
+  "version": "2.0",
+  "routeKey": "POST /coffee-machine",
+  "rawPath": "/coffee-machine",
+  "rawQueryString": "",
+  "headers": {
+    "accept": "application/json",
+    "accept-encoding": "gzip, deflate, br",
+    "content-type": "application/json",
+    "host": "api-id.execute-api.eu-west-1.amazonaws.com",
+    "user-agent": "PostmanRuntime/7.32.3",
+    "x-amzn-trace-id": "Root=1-65a1b2c3-4d5e6f7a8b9c0d1e2f3a4b5c",
+    "x-forwarded-for": "203.0.113.42",
+    "x-forwarded-port": "443",
+    "x-forwarded-proto": "https"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "api-id",
+    "domainName": "api-id.execute-api.eu-west-1.amazonaws.com",
+    "domainPrefix": "api-id",
+    "http": {
+      "method": "POST",
+      "path": "/coffee-machine",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "203.0.113.42",
+      "userAgent": "PostmanRuntime/7.32.3"
+    },
+    "requestId": "abc123def456ghi789",
+    "routeKey": "POST /coffee-machine",
+    "stage": "$default",
+    "time": "11/Nov/2025:10:30:45 +0000",
+    "timeEpoch": 1731322245000
+  },
+  "body": "{\"developerName\":\"Alice\",\"coffeeType\":\"ESPRESSO\"}",
+  "isBase64Encoded": false
+}

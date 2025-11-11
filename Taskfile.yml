@@ -45,6 +45,16 @@ tasks:
     dir: ./coffee-machine-service
     cmd: quarkus build --native --no-tests -Dquarkus.native.container-build=true
 
+  sam:local:invoke:native:coffee-machine-service:
+    desc: Simulate Lambda invocation locally.
+    dir: ./coffee-machine-service
+    cmd: sam local invoke  -e event.json -t sam.native.yaml
+
+  sam:local:invoke:jvm:coffee-machine-service:
+    desc: Simulate Lambda invocation locally.
+    dir: ./coffee-machine-service
+    cmd: sam local invoke  -e event.json -t sam.jvm.yaml
+
   deploy:native:lambda:coffee-machine-service:
     desc: Deploy native image for Coffee Machine Service - AWS Lambda.
     dir: ./coffee-machine-service
@@ -81,6 +91,16 @@ tasks:
     desc: Build native image for Gossip Service.
     dir: ./gossip-service
     cmd: ./mvnw clean -Plambda-java package
+
+  sam:local:invoke:native:gossip-service:
+    desc: Simulate Lambda invocation locally.
+    dir: ./gossip-service
+    cmd: sam local invoke  -e event.json -t sam.native.yaml
+
+  sam:local:invoke:jvm:gossip-service:
+    desc: Simulate Lambda invocation locally.
+    dir: ./gossip-service
+    cmd: sam local invoke  -e event.json -t sam.jvm.yaml
 
   deploy:native:lambda:gossip-service:
     desc: Deploy native image for Gossip Service - AWS Lambda.
