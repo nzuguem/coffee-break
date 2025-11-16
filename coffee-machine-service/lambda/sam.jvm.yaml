@@ -17,7 +17,7 @@ Resources:
         ApplyOn: PublishedVersions
       Layers:
         - Fn::Sub: arn:aws:lambda:${AWS::Region}:753240598075:layer:LambdaAdapterLayerX86:25
-      Runtime: java21
+      Runtime: java25
       CodeUri: .sam-deploy-java
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole

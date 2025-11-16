@@ -89,8 +89,8 @@ tasks:
     desc: Build native image for Gossip Service.
     dir: ./gossip-service
     cmds:
-      - docker build -t al2023-graalvm21 -f Dockerfile.al2023-graalvm21 .
-      - docker run -it -v `pwd`:/project  -v ~/.m2:/root/.m2 al2023-graalvm21 ./mvnw clean -Pnative native:compile
+      - docker build -t al2023-graalvm25 -f Dockerfile.al2023-graalvm25 .
+      - docker run -it -v `pwd`:/project  -v ~/.m2:/root/.m2 al2023-graalvm25 ./mvnw clean -Pnative native:compile
 
   deploy:native:lambda:gossip-service:
     desc: Deploy native image for Gossip Service - AWS Lambda.
