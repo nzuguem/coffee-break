@@ -37,12 +37,10 @@ public class CoffeeBreakActivitiesImpl implements  CoffeeBreakActivities {
     @Override
     public GetGossipResponse getGossip(GetGossipRequest getGossipRequest) {
 
-        var gossipFallback = GetGossipResponse.of("🤔 Les gens sont bizarrement silencieux aujourd'hui...", getGossipRequest.listener());
-
         try {
             return this.gossipServiceClient.getGossip(getGossipRequest.listener());
-        } catch (Exception exception) {
-            return gossipFallback;
+        } catch (Exception _) {
+            return GetGossipResponse.of("🤔 Les gens sont bizarrement silencieux aujourd'hui...", getGossipRequest.listener());
         }
     }
 }

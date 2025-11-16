@@ -1,31 +1,25 @@
 package me.nzuguem.gossip.service;
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-
-import static io.restassured.RestAssured.given;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.assertj.MockMvcTester;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 class GossipServiceTests {
 
-    @LocalServerPort
-    int serverPort;
-
-    @BeforeEach
-    void setUp() {
-        RestAssured.port = this.serverPort;
-    }
+    @Autowired
+    MockMvcTester mockMvcTester;
 
     @Test
     void should_get_gossip() {
-        given()
+        this.mockMvcTester
+                .get()
+                .uri("/gossip")
                 .queryParam("developerName", "Test")
-                .when()
-                .get("/gossip")
-                .then()
-                .statusCode(200);
+                .assertThat()
+                .hasStatusOk();
     }
 }
