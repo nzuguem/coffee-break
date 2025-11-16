@@ -1,5 +1,7 @@
 package me.nzuguem.coffee.machine.models;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public enum CoffeeQuality {
     PERFECT("☕ Café parfait ! La température est idéale, la mousse est crémeuse. Chef d'œuvre !"),
     PERFECT_BARISTA("✨ Magnifique ! On dirait un café de barista professionnel."),
@@ -22,5 +24,9 @@ public enum CoffeeQuality {
 
     public String description() {
         return this.description;
+    }
+
+    public static CoffeeQuality random() {
+        return values()[ThreadLocalRandom.current().nextInt(values().length)];
     }
 }

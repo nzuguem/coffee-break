@@ -28,7 +28,7 @@ public record Gossips() {
             "🎭 Le pair programming s'est transformé en débat philosophique sur les tabs vs spaces."
     );
 
-    public static String randomGossip() {
+    public static String random() {
         return GOSSIPS.get(ThreadLocalRandom.current().nextInt(GOSSIPS.size()));
     }
 }

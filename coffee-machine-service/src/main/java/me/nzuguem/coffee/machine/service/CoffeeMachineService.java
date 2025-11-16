@@ -23,7 +23,7 @@ public class CoffeeMachineService {
 
         Thread.sleep(ThreadLocalRandom.current().nextInt(2000) + 1000L); // 1-3 seconds
 
-        var ramdomQuality = CoffeeQuality.values()[ThreadLocalRandom.current().nextInt(CoffeeQuality.values().length)];
+        var ramdomQuality = CoffeeQuality.random();
 
         if (Objects.equals(ramdomQuality, CoffeeQuality.MACHINE_ERROR)) {
             return RestResponse.serverError();
@@ -34,6 +34,8 @@ public class CoffeeMachineService {
             return RestResponse.status(Response.Status.BAD_REQUEST);
         }
 
-        return RestResponse.ok(MakeCoffeeResponse.of(ramdomQuality, makeCoffeeRequest.coffeeType()));
+        return RestResponse.ok(
+                MakeCoffeeResponse.of(ramdomQuality, makeCoffeeRequest.coffeeType())
+        );
     }
 }

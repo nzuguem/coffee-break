@@ -24,14 +24,16 @@ public class GossipService {
 
         LOGGER.info("👂🏽 {} écoute les potins...", developerName);
 
-        var gossip = Gossips.randomGossip();
+        var gossip = Gossips.random();
 
         if (LocalDateTime.now().getDayOfWeek().getValue() == 5
                 && ThreadLocalRandom.current().nextBoolean()) {
                 gossip = "🎉 C'est vendredi ! Mais surtout, ne déploie RIEN.";
         }
 
-        return ResponseEntity.ok(GetGossipResponse.of(gossip, developerName));
+        return ResponseEntity.ok(
+                GetGossipResponse.of(gossip, developerName)
+        );
     }
 
 }
