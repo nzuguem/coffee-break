@@ -49,20 +49,20 @@ tasks:
 
   deploy:native:lambda:coffee-machine-service:
     desc: Deploy native image for Coffee Machine Service - AWS Lambda.
-    dir: ./coffee-machine-service
+    dir: ./coffee-machine-service/lambda
     cmds:
-      - mkdir -p target/sam
-      - cp target/coffee-machine-service-runner target/sam
-      - cp bootstrap target/sam
+      - mkdir -p .sam-deploy-native
+      - cp ../target/coffee-machine-service-runner .sam-deploy-native
+      - cp bootstrap .sam-deploy-native
       - sam deploy -t sam.native.yaml --config-env native
 
   deploy:lambda:coffee-machine-service:
     desc: Deploy Coffee Machine Service - AWS Lambda.
-    dir: ./coffee-machine-service
+    dir: ./coffee-machine-service/lambda
     cmds:
-      - mkdir -p target/sam
-      - cp -R target/quarkus-app/* target/sam
-      - cp run.sh target/sam
+      - mkdir -p .sam-deploy-java
+      - cp -R ../target/quarkus-app/* .sam-deploy-java
+      - cp run.sh .sam-deploy-java
       - sam deploy -t sam.jvm.yaml
 
   run:gossip-service:
@@ -94,18 +94,18 @@ tasks:
 
   deploy:native:lambda:gossip-service:
     desc: Deploy native image for Gossip Service - AWS Lambda.
-    dir: ./gossip-service
+    dir: ./gossip-service/lambda
     cmds:
-      - mkdir -p target/sam
-      - cp target/gossip-service target/sam
-      - cp bootstrap target/sam
+      - mkdir -p .sam-deploy-native
+      - cp ../target/gossip-service .sam-deploy-native
+      - cp bootstrap .sam-deploy-native
       - sam deploy -t sam.native.yaml --config-env native
 
   deploy:lambda:gossip-service:
     desc: Deploy Gossip Service - AWS Lambda.
-    dir: ./gossip-service
+    dir: ./gossip-service/lambda
     cmds:
-      - mkdir -p target/sam
-      - cp target/gossip-service.jar target/sam/app.jar
-      - cp run.sh target/sam
+      - mkdir -p .sam-deploy-java
+      - cp ../target/gossip-service.jar .sam-deploy-java/app.jar
+      - cp run.sh .sam-deploy-java
       - sam deploy -t sam.jvm.yaml

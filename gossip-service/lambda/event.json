@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "routeKey": "GET /gossip",
+  "rawPath": "/gossip",
+  "rawQueryString": "developerName=Bob",
+  "headers": {
+    "accept": "application/json",
+    "accept-encoding": "gzip, deflate, br",
+    "host": "api-id.execute-api.eu-west-1.amazonaws.com",
+    "user-agent": "Mozilla/5.0",
+    "x-amzn-trace-id": "Root=1-65a1b2c3-4d5e6f7a8b9c0d1e2f3a4b5c",
+    "x-forwarded-for": "203.0.113.42",
+    "x-forwarded-port": "443",
+    "x-forwarded-proto": "https"
+  },
+  "queryStringParameters": {
+    "developerName": "Bob"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "api-id",
+    "domainName": "api-id.execute-api.eu-west-1.amazonaws.com",
+    "domainPrefix": "api-id",
+    "http": {
+      "method": "GET",
+      "path": "/gossip",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "203.0.113.42",
+      "userAgent": "Mozilla/5.0"
+    },
+    "requestId": "xyz789abc123def456",
+    "routeKey": "GET /gossip",
+    "stage": "$default",
+    "time": "11/Nov/2025:10:35:20 +0000",
+    "timeEpoch": 1731322520000
+  },
+  "isBase64Encoded": false
+}

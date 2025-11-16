@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS Serverless Quarkus HTTP - coffee-machine-service
+Description: AWS Serverless Quarkus HTTP - gossip-service
 Globals:
   Api:
     EndpointConfiguration: REGIONAL
@@ -8,7 +8,7 @@ Globals:
       - "*/*"
 
 Resources:
-  CoffeeMachineServiceNativeLwa:
+  GossipServiceNativeLwa:
     Type: AWS::Serverless::Function
     Properties:
       Architectures:
@@ -17,7 +17,7 @@ Resources:
       Layers:
         - Fn::Sub: arn:aws:lambda:${AWS::Region}:753240598075:layer:LambdaAdapterLayerArm64:25
       Runtime: provided.al2023
-      CodeUri: target/sam/
+      CodeUri: .sam-deploy-native
       MemorySize: 128
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 15
@@ -27,21 +27,20 @@ Resources:
         LogFormat: JSON
         ApplicationLogLevel: DEBUG
         SystemLogLevel: INFO
-        LogGroup: !Ref CoffeeMachineServiceNativeLogGroupLwa
+        LogGroup: !Ref GossipServiceNativeLogGroupLwa
       Environment:
         Variables:
-          PORT: 8081
+          PORT: 8082
           RUST_LOG: debug
-          AWS_LAMBDA_EXEC_WRAPPER: /opt/bootstrap
 
-  CoffeeMachineServiceNativeLogGroupLwa:
+  GossipServiceNativeLogGroupLwa:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: /aws/lambda/coffee-machine-service-native-lwa
+      LogGroupName: /aws/lambda/gossip-service-native-lwa
       LogGroupClass: INFREQUENT_ACCESS
       RetentionInDays: 7
 
 Outputs:
   FunctionUrl:
-    Description: "Function URL of Coffee Machine Service Native"
-    Value: !GetAtt CoffeeMachineServiceNativeLwaUrl.FunctionUrl
+    Description: "Function URL of Gossip Service Native"
+    Value: !GetAtt GossipServiceNativeLwaUrl.FunctionUrl
