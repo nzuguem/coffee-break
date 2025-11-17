@@ -116,6 +116,20 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>software.xdev</groupId>
+                <artifactId>music-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <!-- You might also want to add <inherited>false</inherited> so not every child executes this -->
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>music</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
