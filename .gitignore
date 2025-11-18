@@ -23,3 +23,6 @@ nb-configuration.xml
 # Vim
 *.swp
 *.swo
+
+# Local
+**/lambda/.sam-deploy-*

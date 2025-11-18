@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Quarkus HTTP - coffee-machine-service
+
+Resources:
+  CoffeeMachineServiceNativeLwa:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+        - arm64
+      Handler: not.used.in.provided.runtime
+      Layers:
+        - Fn::Sub: arn:aws:lambda:${AWS::Region}:753240598075:layer:LambdaAdapterLayerArm64:25
+      Runtime: provided.al2023
+      CodeUri: .sam-deploy-native
+      MemorySize: 128
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 15
+      FunctionUrlConfig:
+        AuthType: NONE
+      LoggingConfig:
+        LogFormat: JSON
+        ApplicationLogLevel: DEBUG
+        SystemLogLevel: INFO
+        LogGroup: !Ref CoffeeMachineServiceNativeLogGroupLwa
+      Environment:
+        Variables:
+          PORT: 8081
+          RUST_LOG: debug
+
+  CoffeeMachineServiceNativeLogGroupLwa:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/coffee-machine-service-native-lwa
+      LogGroupClass: INFREQUENT_ACCESS
+      RetentionInDays: 7
+
+Outputs:
+  FunctionUrl:
+    Description: "Function URL of Coffee Machine Service Native"
+    Value: !GetAtt CoffeeMachineServiceNativeLwaUrl.FunctionUrl

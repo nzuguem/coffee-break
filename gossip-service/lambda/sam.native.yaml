@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Quarkus HTTP - gossip-service
+
+Resources:
+  GossipServiceNativeLwa:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+        - arm64
+      Handler: not.used.in.provided.runtime
+      Layers:
+        - Fn::Sub: arn:aws:lambda:${AWS::Region}:753240598075:layer:LambdaAdapterLayerArm64:25
+      Runtime: provided.al2023
+      CodeUri: .sam-deploy-native
+      MemorySize: 128
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 15
+      FunctionUrlConfig:
+        AuthType: NONE
+      LoggingConfig:
+        LogFormat: JSON
+        ApplicationLogLevel: DEBUG
+        SystemLogLevel: INFO
+        LogGroup: !Ref GossipServiceNativeLogGroupLwa
+      Environment:
+        Variables:
+          PORT: 8082
+          RUST_LOG: debug
+
+  GossipServiceNativeLogGroupLwa:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/gossip-service-native-lwa
+      LogGroupClass: INFREQUENT_ACCESS
+      RetentionInDays: 7
+
+Outputs:
+  FunctionUrl:
+    Description: "Function URL of Gossip Service Native"
+    Value: !GetAtt GossipServiceNativeLwaUrl.FunctionUrl
